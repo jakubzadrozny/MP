@@ -1,0 +1,11 @@
+def f1(A, B) =
+  -#A + #B
+
+def f2(X, Y) =
+    if(#X > #Y)
+        then f1(Y, X)
+        else f1(X, Y)
+
+def f3(X, Y, Z) =
+    let A = X@Y 
+    f2(A, Z)

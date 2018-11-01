@@ -1,0 +1,14 @@
+def f1(P) = 
+	A + B, C + D
+
+def f2(P) = 
+	if
+		let P = 8 in PS 
+	then 
+		if A [d] then B [C .. D] else [G]
+	else 
+		(((echo)))
+
+def f3(P) = 
+	let F = fun in
+	return(0)

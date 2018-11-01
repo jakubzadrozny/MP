@@ -1,0 +1,35 @@
+(*Konrad Werblinski - obliczanie liczb Fibonnaciego za pomoca mnozenia macierzy*)
+
+def mult_matrix(((a00, a01), (a10,a11)), ((b00,b01), (b10,b11))) =
+	((a00 * b00 + a01 * b10,	a00 * b01 + a01 * b11),
+	 (a10 * b00 + a11 * b10,	a10 * b01 + a11 * b11))
+
+	 
+def new_fib_matrix(_) = 
+	((0, 1), 
+	 (1, 1))
+	 
+	 
+def new_id_matrix(_) = 
+	((1, 0),
+	 (0, 1))
+
+	 
+def power(M, E) = 
+	let X = new_id_matrix(1) in 
+	if E = 0 then
+		X
+	else if E % 2 then
+		mult_matrix(M, power(mult_matrix(M, M), E / 2) )
+	else
+		power(mult_matrix(M, M), E / 2)
+		
+
+def matrix_00((x, _),(_, _)) = x
+
+def fib(N) =
+	matrix_00(mult_matrix(power(new_fib_matrix(1), N), ((0,0), (1,0)) ) )
+	
+
+def main(N) = 
+	fib(N)

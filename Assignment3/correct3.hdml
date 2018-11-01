@@ -1,0 +1,5 @@
+def f1(_) = 1
+def f2(A) = 1
+def f3(A, B, C, D, E) = 1
+def f4(((A, B), C), D, (E, (F, G))) = 1
+def f5(((A, B), C), D, _, (_, (A, _), R), _, (E, (F, G))) = 1

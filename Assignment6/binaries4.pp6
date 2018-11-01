@@ -1,0 +1,9 @@
+fun f(x:bool) : int = if x then 1 else 0
+
+input n1 n2 n3 in
+    let b1 = n1 + n2 * n3 > 0 in
+    let b2 = n2 - n3 mod 2 > -1 in
+    let b3 = n1 + n2 + n3 > 1 in
+    let b4 = b1 and b2 or b3 in
+    let n4 = n1 * n2 * n3 in
+    n4

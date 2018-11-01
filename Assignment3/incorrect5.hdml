@@ -1,0 +1,43 @@
+def f1(A, B) =
+  -#A + #B
+
+def f2(X, Y) =
+    if(#X > #Y)
+        then f1(Y, X)
+        else f1(X, Y)
+
+def f3(X, Y, Z) =
+    let A = X@Y in
+    f2(A, Z)
+
+def f4(A, B, C) =
+    (1 + 2) - 3 * 4 ^ 5 + -(A),
+    3+-4, #-A, 1 + 2 + 3 + 4 + 5 + 6 + -A - (B + C), #-##~~-#~~A
+
+def f5(_) = 1
+def f6(A) = 1
+def f7(A, B, C, D, E) = 
+def f8(((A, B), C), D, (E, (F, G))) = 1
+def f9(((A, B), C), D, _, (_, (A, _), R), _, (E, (F, G))) = 1
+
+def half_adder(A, B) =
+  A&B, A^B
+
+(*def full_adder(A, B, C) =
+  let C1, S1 = half_adder(A, B) in
+  let C2, S2 = half_adder(S1, C) in
+  C1|C2, S2*)
+
+def ripple_carry_adder(A, (*B(*(*)),*) C*)*)C) =
+  let N = #A in
+  if N = 0 then C, []
+  else
+    let C1, S1 = full_adder(A[0], B[0], C) in
+    let C2, S2 = ripple_carry_adder(A[N-1..1], B[N-1..1], C1) in
+    C2, S2@S1
+
+(*def log_depth_adder(A, B, C) =
+  if #A = 0 the(*n C, []
+  else
+    let P, G, S = log*)(*(*_depth_adder_a(*ux(A, B, C) in
+    G*) | *)P&*)C, S

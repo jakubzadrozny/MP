@@ -1,0 +1,44 @@
+(*Konrad Werblinski - Sumator bitowy*)
+
+(*Program opisuje uklad sumujacy dwa ciagi bitow 
+A i B(moga miec rozna dlugosc) i 
+zwracajacy ciag dlugosci max(#A, #B) + 1 bedacy suma A i B*)
+
+
+def _sum(X, Y) = (*sumator 1-bitowy*)
+	X & Y, X ^ Y
+	
+	
+def _sum3(X, Y, Z) = (*sumator 1-bitowy z przeniesieniem*)
+	X & Y | Y & Z | X & Z, X ^ Y ^ Z
+	
+   
+def sum(A, B) =
+	if #A = 1 then
+		_sum(A[0], B[0])
+	else
+		if(#A > 1) then
+			let c, s = sum(A[#A-1 .. 1], B[#B-1 .. 1]) in 		(*obliczenie sumy ciagow krotszych o 1 (s) oraz przeniesienia(c)*)
+			let nc, front = _sum3(c, A[0], B[0]) in 			(*obliczenie obecnego bitu(front) oraz nowego przeniesienia(nc)*)
+			nc, s@front 										(*zwrocenie przenisienia(nc) i czesciowej sumy(s@front)*)
+		else
+			[], []
+			
+			
+def make_equal_len(A,B) = (*Wyrownanie dwoch ciagow bitow*)
+	if #A < #B then
+		padding(A, #B), B
+	else
+		A, padding(B, #A)
+	
+def padding(A, L) = (*Dopelenienie zerami na poczatku*)
+	if #A = L then
+		A
+	else
+		padding(A@[0], L)
+	
+			
+def main(A,B) = 
+	let A1, B1 = make_equal_len(A, B) in
+	let c, s = sum(A1,B1) in
+	s@c (*doklejenie przeniesienia do sumy*)

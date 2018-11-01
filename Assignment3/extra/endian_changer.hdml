@@ -1,0 +1,30 @@
+(*Konrad Werblinski - Endian changer*)
+
+(*Program opisujacy uklad do zmiany pomiedzy zapisami slow w pamieci Big Endian <-> Little Endian*)
+(*Jezeli potrzeba to dopelnia wejsciowe slowo do zadanej dlugosci bajtu*)
+
+def endian_change(Word, ByteLen, NBytes) =
+	if NBytes = 1 then
+		Word
+	else
+		Word[ByteLen - 1 .. 0] @ endian_change(Word[#Word - 1 .. ByteLen], ByteLen, NBytes - 1)
+
+
+def padding(A, L) = (*Dopelenienie zerami na poczatku do zadanej dlugosci L*)
+	if #A = L then
+		A
+	else
+		padding(A@[0], L)
+
+
+def align_to_byte(Word, ByteLen) = (*Dopelenienie slowa do danej dlugosci bajtu*)
+	if #Word % ByteLen <> 0 then
+		padding(Word, #Word + (ByteLen - #Word % ByteLen))
+	else
+		Word
+
+
+def main(Word, ByteLen) =
+	let Word1 = align_to_byte(Word, ByteLen) in
+	endian_change(Word1, ByteLen, #Word1 / ByteLen)
+	

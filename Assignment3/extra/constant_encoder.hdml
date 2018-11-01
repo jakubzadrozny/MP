@@ -1,0 +1,34 @@
+(*"Konrad Werblinski - kodowanie stalych"*)
+(*Program opisujacy uklad ktory, koduje stala w pamieci dorownujac do podanej dlugosci bajtu*)
+(*Uwaga stala musi byc dodatnia*)
+
+def _bin(N) = 
+	if N = 0 then
+		[]
+	else
+		[N % 2] @ _bin(N / 2)  
+		
+def bin(N) =
+	if N = 0 then
+		[0]
+	else
+		_bin(N)
+
+
+def padding(A, L) = (*Dopelenienie zerami na poczatku do zadanej dlugosci L*)
+	if #A = L then
+		A
+	else
+		padding(A@[0], L)
+
+
+def align_to_byte(Word, ByteLen) = (*Dopelenienie slowa do danej dlugosci bajtu*)
+	if #Word % ByteLen <> 0 then
+		padding(Word, #Word + (ByteLen - #Word % ByteLen))
+	else
+		Word
+
+
+def main(N, ByteLen) = 
+	align_to_byte(bin(N), ByteLen)
+

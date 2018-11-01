@@ -1,0 +1,8 @@
+def f1(P) = 
+	A + B, C + D
+
+(*def f2(P) = 
+	if A = 0 then A = 1 else A*)
+
+def f3(P) = 
+	#f1(G)(* + -f2(C)*)

@@ -1,0 +1,12 @@
+def power(A,B) = 
+  if B = 1 then A
+  else 
+	if B % 2 then
+	  let H = B / 2 in
+	  let P = power(A, H) in
+	  P*P*A
+	else
+	  let H = B / 2 in
+	  let P = power(A,H) in
+	  P*P
+	

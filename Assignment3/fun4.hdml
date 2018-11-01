@@ -1,0 +1,15 @@
+def f1(_, _) = 
+	A + B, C + D
+
+def f2(_) = 
+	if
+		let P = 8 in PS 
+	then 
+		if A [d] then B [C .. D] else [G]
+	else 
+		(((echo)))
+
+def f3(A, _, (D)) = 
+	let F = fun in
+		let A = B in (C+[]), 
+	return(0)
